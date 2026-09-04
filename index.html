@@ -1,0 +1,44 @@
+export default {
+  async fetch() {
+    const target =
+      "https://seekingalpha.com/article/4886592-why-pfizer-remains-a-strong-buy-in-2026";
+
+    const html = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Opening article…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+</head>
+<body>
+
+<p>Opening the article, please wait…</p>
+<p>
+If nothing happens,
+<a href="${target}">click here</a>.
+</p>
+
+<script>
+  const min = 400;
+  const max = 800;
+  const delay = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  setTimeout(function () {
+    window.location.href = ${JSON.stringify(target)};
+  }, delay);
+</script>
+
+</body>
+</html>`;
+
+    return new Response(html, {
+      status: 200,
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Referrer-Policy": "no-referrer"
+      }
+    });
+  }
+};
